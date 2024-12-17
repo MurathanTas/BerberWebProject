@@ -1,3 +1,7 @@
+using BerberWeb.DataAccess.Context;
+using BerberWeb.Entity.Entities;
+using Microsoft.EntityFrameworkCore;
+
 namespace BerberWeb.UI
 {
     public class Program
@@ -8,6 +12,18 @@ namespace BerberWeb.UI
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<BerberWebDbContext>(options => options.UseNpgsql(builder.Configuration
+              .GetConnectionString("PostgreSQL")));
+            builder.Services.AddIdentity<AppUser, AppRole>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+            }).AddEntityFrameworkStores<BerberWebDbContext>();
 
             var app = builder.Build();
 
