@@ -40,9 +40,5 @@ namespace BerberWeb.DataAccess.Context
         public DbSet<ServicePersonel> ServicePersonels { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<AppointmentRegister> AppointmentRegisters { get; set; }
-        public DbSet<PersonelMusaitlik> PersonelMusaitliks { get; set; }
-        public DbSet<Randevu> Randevus { get; set; }
-        public DbSet<Personel> Personels { get; set; }
-        public DbSet<Deneme> Denemes { get; set; }
     }
 }
