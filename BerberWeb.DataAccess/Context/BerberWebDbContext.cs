@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BerberWeb.DataAccess.Context
 {
-    public class BerberWebDbContext : IdentityDbContext<AppUser,AppRole,int>
+    public class BerberWebDbContext : IdentityDbContext<AppUser, AppRole, int>
     {
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,7 @@ namespace BerberWeb.DataAccess.Context
                 .WithMany(u => u.ServicePersonels)
                 .HasForeignKey(sp => sp.AppUserId);
 
-           
+
         }
 
         public DbSet<About> About { get; set; }
