@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model BerberWeb.Entity.Entities.Service
+
+<form asp-action="EditService" asp-controller="AdminService" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="ServiceName">Hizmet Adı:</label>
+        <input asp-for="ServiceName" class="form-control" required />
+        <span asp-validation-for="ServiceName" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="ServiceImgUrl">Img Url:</label>
+        <input asp-for="ServiceImgUrl" type="text" class="form-control" />
+        <span asp-validation-for="ServiceImgUrl" class="text-danger"></span>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+    <a asp-controller="AdminService" asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+</form>
