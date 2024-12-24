@@ -1,0 +1,48 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model ServicePersonelViewModel
+
+<h2>@Model.ServiceName Hizmetine Atanan Personeller</h2>
+
+@if (Model.AssignedPersonels != null && Model.AssignedPersonels.Any())
+{
+    <table class="table table-striped table-hover table-bordered align-middle">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">İsim</th>
+                <th scope="col">Soyisim</th>
+                <th scope="col">Sil</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var personel in Model.AssignedPersonels)
+            {
+                <tr>
+                    <th scope="row">@personel.FirstName</th>
+                    <td>@personel.LastName</td>
+                    <td>
+                        <form asp-action="RemovePersonel" asp-controller="ServicePersonel" method="post">
+                            <input type="hidden" name="serviceId" value="@Model.serviceID" />
+                            <input type="hidden" name="personelId" value="@personel.Id" />
+                            <button type="submit" class="btn btn-danger">Sil</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <p>Bu hizmete henüz personel atanmadı.</p>
+}
+
+<div class="text-left">
+    <a asp-controller="ServicePersonel" asp-action="AssignPersonel" asp-route-serviceId="@Model.serviceID" class="btn btn-warning">
+        Yeni Personel Ata
+    </a>
+</div>

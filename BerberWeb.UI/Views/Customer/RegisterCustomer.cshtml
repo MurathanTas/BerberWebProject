@@ -1,0 +1,54 @@
+﻿@model BerberWeb.UI.Models.CustomerCreateModel
+
+@{
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 56px); padding-top: 56px;">
+    <div class="card shadow-sm p-4" style="max-width: 500px; width: 100%;">
+        <h2 class="text-center mb-4">Kayıt Ol</h2>
+        <p class="text-center text-muted mb-4">Lütfen bilgilerinizi doldurarak kaydolun.</p>
+
+        <form asp-action="RegisterCustomer" method="post" class="form">
+            <div class="form-group mb-3">
+                <label asp-for="UserName" class="form-label">Kullanıcı Adı</label>
+                <input asp-for="UserName" class="form-control" placeholder="Kullanıcı adınızı girin" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="form-label">E-posta</label>
+                <input asp-for="Email" class="form-control" type="email" placeholder="E-posta adresinizi girin" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="FirstName" class="form-label">Ad</label>
+                <input asp-for="FirstName" class="form-control" placeholder="Adınızı girin" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="LastName" class="form-label">Soyad</label>
+                <input asp-for="LastName" class="form-control" placeholder="Soyadınızı girin" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Password" class="form-label">Şifre</label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Şifrenizi oluşturun" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mb-3">Kayıt Ol</button>
+        </form>
+
+        <div class="text-center">
+            <a asp-action="SignIn" asp-controller="Login" class="btn btn-secondary w-100">Geri Dön</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

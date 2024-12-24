@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model AssignPersonelViewModel
+
+<h2>Personel Ata</h2>
+
+<form asp-action="AssignPersonel" method="post">
+    <input type="hidden" asp-for="ServiceId" />
+    <div class="form-group">
+        <label for="SelectedPersonelId">Personel Seçin:</label>
+        <select asp-for="SelectedPersonelId" asp-items="Model.Personels" class="form-control"></select>
+    </div>
+    <button type="submit" class="btn btn-primary">Ata</button>
+</form>
