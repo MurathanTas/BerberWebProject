@@ -5,13 +5,13 @@ using RestSharp;
 
 namespace BerberWeb.UI.Controllers
 {
+    [Authorize]
     public class HairstyleController : Controller
     {
         private const string ApiUrl = "https://hairstyle-changer.p.rapidapi.com/huoshan/facebody/hairstyle";
-        private const string ApiKey = "";
+        private const string ApiKey = "7512f43d22msh26c077d39ca1d12p1b30e6jsnd9d7737b4f9f";
         private const string ApiHost = "hairstyle-changer.p.rapidapi.com";
 
-        // Saç stili seçme ve fotoğraf yükleme sayfası
         public IActionResult Index()
         {
             ViewBag.HairStyles = GetHairStyles();
@@ -25,7 +25,7 @@ namespace BerberWeb.UI.Controllers
             if (uploadedImage == null || uploadedImage.Length == 0)
             {
                 TempData["ErrorMessage"] = "Lütfen bir fotoğraf yükleyin.";
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
 
             try
@@ -56,7 +56,7 @@ namespace BerberWeb.UI.Controllers
                 }
                 else
                 {
-                    TempData["ErrorMessage"] = $"Resim işleme başarısız oldu. Hata: {response.Content}";
+                    TempData["ErrorMessage"] = $"Resim işleme başarısız!. Hata: {response.Content}";
                 }
             }
             catch (Exception ex)
@@ -64,10 +64,9 @@ namespace BerberWeb.UI.Controllers
                 TempData["ErrorMessage"] = $"Bir hata oluştu: {ex.Message}";
             }
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index");
         }
 
-        // API çağrısını yapan yardımcı metod
         private RestResponse SendApiRequest(byte[] imageBytes, string fileName, string style)
         {
             var client = new RestClient(ApiUrl);
@@ -85,7 +84,6 @@ namespace BerberWeb.UI.Controllers
             return client.Execute(request);
         }
 
-        // Saç stilleri sözlüğünü döndüren yardımcı metod
         private Dictionary<int, string> GetHairStyles()
         {
             return new Dictionary<int, string>

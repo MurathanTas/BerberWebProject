@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<BerberWeb.Entity.Entities.PersonelMusaitlik>
+
+<table class="table table-striped table-hover table-bordered align-middle">
+    <thead class="table-light">
+        <tr>
+            <th scope="col">Personel</th>
+            <th scope="col">Başlangıç</th>
+            <th scope="col">Bitiş</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var appointment in Model)
+        {
+            <tr>
+                <td>@appointment.AppUser?.FirstName @appointment.AppUser?.LastName</td>
+
+                
+                <td>@appointment.BaslangicSaati.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss")</td>
+
+                <td>@appointment.BitisSaati.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-left">
+    <a asp-controller="PersonelMusaitliks" asp-action="Create" class="btn btn-success">Ekle</a>
+</div>
+<br />
+

@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<BerberWeb.Entity.Entities.Service>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Hizmet Adı</th>
+
+            <th>İşlem</th>
+            <th>Fiyat</th>
+            <th>İşlem Süresi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var service in Model)
+        {
+            <tr>
+                <td>@service.ServiceName</td>
+                <td>₺@service.Price</td>
+                <td>@service.Duration</td>
+
+                <td>
+                    <a asp-action="Create" asp-route-serviceId="@service.Id" class="btn btn-primary">Randevu Oluştur</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

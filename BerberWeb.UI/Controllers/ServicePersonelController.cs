@@ -26,7 +26,6 @@ namespace BerberWeb.UI.Controllers
         public async Task<IActionResult> Index(int serviceId)
         {
 
-            // Seçilen hizmeti bul
             var service = await _dbContext.Services
                                           .Include(s => s.ServicePersonels)
                                           .ThenInclude(sp => sp.AppUser)  // Hizmetin personel ilişkisini yükle
@@ -133,8 +132,6 @@ namespace BerberWeb.UI.Controllers
             TempData["Success"] = "Personel başarıyla silindi.";
             return RedirectToAction("Index", new { serviceId });
         }
-
-
 
     }
 }

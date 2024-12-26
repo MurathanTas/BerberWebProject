@@ -1,0 +1,86 @@
+﻿@model IEnumerable<BerberWeb.Entity.Entities.Randevu>
+
+<h2>Randevularım</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Hizmet</th>
+            <th>Fiyat</th>
+            <th>Hizmet Süresi</th>
+            <th>Personel</th>
+            <th>Başlangıç Tarihi</th>
+            <th>Bitiş Tarihi</th>
+            <th>Durum</th>
+            <th>Süre</th>
+            <th>Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var randevu in Model)
+        {
+            <tr>
+                <td>@randevu.Service.ServiceName</td>
+                <td>₺@randevu.Service.Price</td>
+                <td>@randevu.Service.Duration</td>
+                <td>@randevu.Personel.AppUser.FirstName @randevu.Personel.AppUser.LastName</td>
+                <td>@randevu.StartDate.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss")</td>
+                <td>@randevu.FinishDate.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss")</td>
+                <td>
+                    @if (randevu.Onay)
+                    {
+                        <span class="text-success">Onaylandı</span>
+                    }
+                    else if (randevu.Ret)
+                    {
+                        <span class="text-danger">Reddedildi</span>
+                    }
+                    else
+                    {
+                        <span class="text-warning">Beklemede</span>
+                    }
+                </td>
+                <td>
+                    @if (randevu.Onay)
+                    {
+                        if (DateTime.Now < randevu.StartDate.ToLocalTime())
+                        {
+                            <span class="text-info">Randevu tarihi daha gelmedi</span>
+                        }
+                        else if (DateTime.Now > randevu.FinishDate.ToLocalTime())
+                        {
+                            <span class="text-danger">Randevu tarihi geçti</span>
+                        }
+                        else
+                        {
+                            <span class="text-success">Randevu şu anda devam ediyor</span>
+                        }
+                    }
+                    else
+                    {
+                        <span>-</span>
+                    }
+                </td>
+                <td>
+                    @if (!randevu.Onay && !randevu.Ret && DateTime.Now <= randevu.StartDate.ToLocalTime())
+                    {
+                        <form asp-action="DeleteRandevu" asp-route-id="@randevu.RandevuId" method="post">
+                            <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                        </form>
+                    }
+                    else if (DateTime.Now <= randevu.StartDate.ToLocalTime())
+                    {
+                        <form asp-action="DeleteRandevu" asp-route-id="@randevu.RandevuId" method="post">
+                            <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span>-</span>
+
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,37 @@
+﻿@model BerberWeb.Entity.Entities.PersonelMusaitlik
+
+
+@{
+    ViewData["Title"] = "Personel Musaitlik Ekle";
+}
+
+<h2>@ViewData["Title"]</h2>
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    </div>
+}
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="PersonelId">Personel Seçin</label>
+        <select class="form-control" asp-for="AppUserId" asp-items="@(new SelectList(ViewBag.PersonelList, "UserId", "FullName"))"></select>
+
+        <span asp-validation-for="AppUserId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="BaslangicSaati">Başlangıç Saati</label>
+        <input asp-for="BaslangicSaati" type="datetime-local" class="form-control" />
+        <span asp-validation-for="BaslangicSaati" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="BitisSaati">Bitiş Saati</label>
+        <input asp-for="BitisSaati" type="datetime-local" class="form-control" />
+        <span asp-validation-for="BitisSaati" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>

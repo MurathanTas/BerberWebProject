@@ -1,3 +1,4 @@
+using BerberWeb.Business.Abstract;
 using BerberWeb.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -6,27 +7,32 @@ namespace BerberWeb.UI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IAboutService _aboutService;
+        private readonly IContactService _contactService;
+        private readonly IServiceService _serviceService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IAboutService aboutService, IContactService contactService, IServiceService serviceService)
         {
-            _logger = logger;
+            _aboutService = aboutService;
+            _contactService = contactService;
+            _serviceService = serviceService;
         }
 
         public IActionResult Index()
         {
-            return View();
-        }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+            var about = _aboutService.TGetByID(1);
+            var services = _serviceService.TGetList();
+            var contact = _contactService.TGetByID(1);
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var viewModel = new MainPageViewModel
+            {
+                About = about,
+                Services = services,
+                Contact = contact
+            };
+
+            return View(viewModel);
         }
     }
 }

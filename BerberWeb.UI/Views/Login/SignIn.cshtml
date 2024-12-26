@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+
+@model UserLoginViewModel
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
+        <h2 class="text-center mb-4">Giriş Yap</h2>
+
+        <!-- Genel Hataları Göster -->
+        @if (!ViewData.ModelState.IsValid)
+
+        {
+            <div class="alert alert-danger">
+                @Html.ValidationSummary(false, "Giriş başarısız:")
+            </div>
+        }
+
+        <form asp-action="SignIn" method="post">
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="form-label">E-posta</label>
+                <input asp-for="Email" class="form-control" placeholder="E-postanızı girin" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Password" class="form-label">Şifre</label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Şifrenizi girin" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mb-3">Giriş Yap</button>
+        </form>
+
+        <div class="text-center">
+            <p>Hesabın Yok Mu?</p>
+            <a asp-controller="Customer" asp-action="RegisterCustomer" class="btn btn-warning">Kayıt Ol</a>
+        </div>
+    </div>
+</div>

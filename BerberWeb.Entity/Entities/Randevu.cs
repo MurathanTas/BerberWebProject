@@ -15,8 +15,8 @@ namespace BerberWeb.Entity.Entities
         public AppUser AppUser { get; set; }   
         public int PersonelId { get; set; }
         public Personel Personel { get; set; }
-        public DateTimeOffset StartDate { get; set; } // DateTime yerine DateTimeOffset
-        public DateTimeOffset FinishDate { get; set; } // DateTime yerine DateTimeOffset
+        public DateTimeOffset StartDate { get; set; } 
+        public DateTimeOffset FinishDate { get; set; } 
         public bool Onay { get; set; } = false;
         public bool Ret { get; set; } = false;
         public string Detay { get; set; }

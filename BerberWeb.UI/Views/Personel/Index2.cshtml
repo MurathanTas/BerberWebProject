@@ -1,0 +1,48 @@
+﻿@model IEnumerable<BerberWeb.Entity.Entities.Randevu>
+@{
+    ViewData["Title"] = "Personel Randevularım";
+    int count = 1;
+}
+
+<h2>Personel Randevularım</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>#</th>
+            <th>Hizmet</th>
+            <th>Müşteri</th>
+            <th>Başlangıç Tarihi</th>
+            <th>Bitiş Tarihi</th>
+            <th>Durum</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var appointment in Model)
+        {
+            <tr>
+
+                <td>@(count++)</td>
+                <td>@appointment.Service.ServiceName</td>
+                <td>@appointment.AppUser.FirstName @appointment.AppUser.LastName</td>
+                <td>@appointment.StartDate.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss")</td>
+                <td>@appointment.FinishDate.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss")</td>
+                <td>
+                    @if (appointment.Onay)
+                    {
+                        <span class="text-success">Onaylandı</span>
+                    }
+                    else if (appointment.Ret)
+                    {
+                        <span class="text-danger">Reddedildi</span>
+                    }
+                    else
+                    {
+                        <span class="text-warning">Beklemede</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

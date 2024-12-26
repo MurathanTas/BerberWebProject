@@ -1,0 +1,158 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<!-- upto 2 directory depth-->
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Super Folio</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700;800&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700;800&amp;display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700;800&amp;display=swap" />
+    </noscript>
+    <link href="~/Template//css/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
+    <link href="~/Template//css/bootstrap-icons/bootstrap-icons.css?ver=1.2.0" rel="stylesheet">
+    <link href="~/Template//css/bootstrap.min.css?ver=1.2.0" rel="stylesheet">
+    <link href="~/Template//css/aos.css?ver=1.2.0" rel="stylesheet">
+    <link href="~/Template//css/main.css?ver=1.2.0" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <noscript>
+        <style type="text/css">
+            [data-aos] {
+                opacity: 1 !important;
+                transform: translate(0) scale(1) !important;
+            }
+        </style>
+    </noscript>
+</head>
+<body id="top">
+    <header class="bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="header-nav" role="navigation">
+            <div class="container">
+                <a class="link-dark navbar-brand site-title mb-0" href="/Home/Index">Super Berber</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto me-2">
+                        <li class="nav-item"><a class="nav-link" href="/Home/Index/#about">Hakkımızda</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Home/Index/#services">Hizmetlerimiz</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Home/Index/#portfolio">Galeri</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Home/Index/#contact">İletişim</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <!-- Kullanıcı oturum açmışsa "Çıkış Yap" butonu -->
+                            <li class="nav-item">
+                                <form method="post" asp-controller="MyProfile" asp-action="Profile" class="d-inline">
+                                    <button type="submit" class="btn btn-link nav-link" style="padding: 0;">Profile Git</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <!-- Kullanıcı oturum açmamışsa "Giriş Yap" butonu -->
+                            <li class="nav-item"><a class="nav-link" href="/Login/SignIn">Giriş Yap</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    @if (ViewData["ShowSidebar"] != null && (bool)ViewData["ShowSidebar"])
+    {
+        <style>
+            .sidebar {
+                width: 250px;
+                position: fixed;
+                top: 56px; /* Navbar yüksekliği */
+                left: 0;
+                height: calc(100% - 56px);
+                background-color: #343a40;
+                color: #fff;
+                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+
+                .sidebar ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                    .sidebar ul li {
+                        display: flex;
+                        align-items: center;
+                        padding: 15px 20px;
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                        transition: background-color 0.3s ease;
+                    }
+
+                        .sidebar ul li:hover {
+                            background-color: #495057;
+                            cursor: pointer;
+                        }
+
+                        .sidebar ul li a {
+                            color: #fff;
+                            text-decoration: none;
+                            font-size: 16px;
+                            width: 100%;
+                        }
+
+                        .sidebar ul li i {
+                            margin-right: 15px;
+                            font-size: 18px;
+                            color: #adb5bd;
+                        }
+
+                        .sidebar ul li:hover i {
+                            color: #fff;
+                        }
+        </style>
+
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-home"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-users"></i> Kullanıcılar
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cogs"></i> Ayarlar
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-sign-out-alt"></i> Çıkış
+                    </a>
+                </li>
+            </ul>
+        </div>
+    }
+
+    <div class="content" style="@(ViewData["ShowSidebar"] != null && (bool)ViewData["ShowSidebar"] ? "margin-left: 250px;" : "")">
+        @RenderBody()
+    </div>
+    <div id="scrolltop"><a class="btn btn-secondary" href="#top"><span class="icon"><i class="fas fa-angle-up fa-x"></i></span></a></div>
+    <script src="~/Template//scripts/imagesloaded.pkgd.min.js?ver=1.2.0"></script>
+    <script src="~/Template//scripts/masonry.pkgd.min.js?ver=1.2.0"></script>
+    <script src="~/Template//scripts/BigPicture.min.js?ver=1.2.0"></script>
+    <script src="~/Template//scripts/purecounter.min.js?ver=1.2.0"></script>
+    <script src="~/Template//scripts/bootstrap.bundle.min.js?ver=1.2.0"></script>
+    <script src="~/Template//scripts/aos.min.js?ver=1.2.0"></script>
+    <script src="~/Template//scripts/main.js?ver=1.2.0"></script>
+    @RenderSection("Scripts", required: false) <!-- Burada, Scripts bölümünü ekliyoruz. -->
+
+</body>
+</html>

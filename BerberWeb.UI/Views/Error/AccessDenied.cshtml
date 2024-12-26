@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Erişim Reddedildi";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        .error-code {
+            font-size: 100px;
+            font-weight: 600;
+            color: #f44336;
+        }
+        .message {
+            font-size: 18px;
+            color: #555;
+            margin: 20px 0;
+        }
+        .action-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .action-btn:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-code">403</div>
+        <h1>@ViewData["Title"]</h1>
+        <p class="message">Bu sayfaya erişim yetkiniz bulunmamaktadır. Lütfen yetkilendirme durumunuzu kontrol edin.</p>
+        <a href="/" class="action-btn">Ana Sayfaya Dön</a>
+        <div class="footer">© 2024 Şirketiniz</div>
+    </div>
+</body>
+</html>

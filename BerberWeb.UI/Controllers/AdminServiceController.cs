@@ -1,11 +1,14 @@
 ﻿using BerberWeb.Business.Abstract;
 using BerberWeb.Entity.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BerberWeb.UI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminServiceController : Controller
     {
+
         private readonly IGenericService<Service> _serviceService;
 
         public AdminServiceController(IGenericService<Service> serviceService)

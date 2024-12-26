@@ -1,0 +1,21 @@
+﻿@model IEnumerable<BerberWeb.Entity.Entities.PersonelMusaitlik>
+
+<h1>Çalışma Saatlerim</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Başlangıç Saati</th>
+            <th>Bitiş Saati</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var saat in Model)
+        {
+            <tr>
+                <td>@saat.BaslangicSaati.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss")</td>
+                <td>@saat.BitisSaati.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss")</td>
+            </tr>
+        }
+    </tbody>
+</table>

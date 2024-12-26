@@ -29,7 +29,6 @@ namespace BerberWeb.UI.Controllers
                 return NotFound($"Rol '{roleName}' bulunamadı.");
             }
 
-            // Customer rolüne sahip tüm kullanıcıları alır
             var usersInRole = await _userManager.GetUsersInRoleAsync(roleName);
 
             return View(usersInRole);
@@ -59,7 +58,6 @@ namespace BerberWeb.UI.Controllers
 
                 if (result.Succeeded)
                 {
-                    // Customer rol ekleme işlemi
                     var roleResult = await _userManager.AddToRoleAsync(user, "Customer");
 
                     if (roleResult.Succeeded)

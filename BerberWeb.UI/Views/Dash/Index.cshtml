@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2 class="text-center my-4">Dashboard</h2>
+
+<div class="container">
+    <div class="row">
+        <!-- Günlük Kazanç -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-success">
+                <div class="card-header">
+                    <h5>Günlük Kazanç</h5>
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.DailyRevenue != null)
+                    {
+                        <p>Tarih: @ViewBag.DailyRevenue.Date</p>
+                        <p>Kazanç: @ViewBag.DailyRevenue.Revenue.ToString("C")</p>
+                    }
+                    else if (ViewBag.DailyRevenueError != null)
+                    {
+                        <p>@ViewBag.DailyRevenueError</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Aylık Kazanç -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-primary">
+                <div class="card-header">
+                    <h5>Aylık Kazanç</h5>
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.MonthlyRevenue != null)
+                    {
+                        <p>Ay: @ViewBag.MonthlyRevenue.Month</p>
+                        <p>Kazanç: @ViewBag.MonthlyRevenue.Revenue.ToString("C")</p>
+                    }
+                    else if (ViewBag.MonthlyRevenueError != null)
+                    {
+                        <p>@ViewBag.MonthlyRevenueError</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Günlük En Çok Randevusu Olan Personel -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-warning">
+                <div class="card-header">
+                    <h5>Günlük En Çok Randevusu Olan Personel</h5>
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.TopEmployeeToday != null)
+                    {
+                        <p>Personel: @ViewBag.TopEmployeeToday.FullName</p>
+                        <p>Randevu Sayısı: @ViewBag.TopEmployeeToday.AppointmentCount</p>
+                    }
+                    else if (ViewBag.TopEmployeeTodayError != null)
+                    {
+                        <p>@ViewBag.TopEmployeeTodayError</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- En Çok Gelen Müşteri -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-danger">
+                <div class="card-header">
+                    <h5>En Çok Gelen Müşteri</h5>
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.TopCustomer != null)
+                    {
+                        <p>Müşteri: @ViewBag.TopCustomer.FullName</p>
+                        <p>Randevu Sayısı: @ViewBag.TopCustomer.AppointmentCount</p>
+                    }
+                    else if (ViewBag.TopCustomerError != null)
+                    {
+                        <p>@ViewBag.TopCustomerError</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- En Çok Randevusu Alınan Hizmet -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-info">
+                <div class="card-header">
+                    <h5>En Çok Randevusu Alınan Hizmet</h5>
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.TopService != null)
+                    {
+                        <p>Hizmet: @ViewBag.TopService.ServiceName</p>
+                        <p>Randevu Sayısı: @ViewBag.TopService.AppointmentCount</p>
+                    }
+                    else if (ViewBag.TopServiceError != null)
+                    {
+                        <p>@ViewBag.TopServiceError</p>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-secondary">
+                <div class="card-header">
+                    <h5>Aylık En Çok Randevusu Olan Personel</h5>
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.TopEmployeeToday != null)
+                    {
+                        <p>Personel: @ViewBag.TopEmployeeThisMonth.FullName</p>
+                        <p>Randevu Sayısı: @ViewBag.TopEmployeeThisMonth.AppointmentCount ve Kazancı: ₺@ViewBag.TopEmployeeThisMonth.Kazanc</p>
+                    }
+                    else if (ViewBag.TopEmployeeThisMonthError != null)
+                    {
+                        <p>@ViewBag.TopEmployeeThisMonthError</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

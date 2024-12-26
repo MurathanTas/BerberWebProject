@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BerberWeb.Entity.Entities.Randevu>
+
+<h1>Tüm Randevular</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Hizmet Adı</th>
+            <th>Müşteri</th>
+            <th>Personel Adı</th>
+            <th>Başlangıç Tarihi</th>
+            <th>Bitiş Tarihi</th>
+            <th>Durum</th>
+            <th>Talep</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var randevu in Model)
+        {
+            <tr class="@((randevu.Onay ? "table-success" : (randevu.Ret ? "table-danger" : "table-warning")))">
+                <td>@randevu.Service.ServiceName</td>
+                <td>@randevu.AppUser.FirstName @randevu.AppUser.LastName</td>
+                <td>@randevu.Personel.AppUser.FirstName @randevu.Personel.AppUser.LastName</td>
+                <td>@randevu.StartDate.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss")</td>
+                <td>@randevu.FinishDate.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss")</td>
+                <td>
+                    @if (randevu.Onay)
+                    {
+                        <span class="badge bg-success">Onaylandı</span>
+                    }
+                    else if (randevu.Ret)
+                    {
+                        <span class="badge bg-danger">Reddedildi</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning">Beklemede</span>
+                    }
+
+                   
+                </td>
+                <td>
+                     @if (!randevu.Onay && !randevu.Ret)
+                    {
+                        <form asp-action="ApproveAppointment" method="post" style="display:inline;">
+                            <input type="hidden" name="randevuId" value="@randevu.RandevuId" />
+                            <button type="submit" class="btn btn-success">Onayla</button>
+                        </form>
+                        <form asp-action="RejectAppointment" method="post" style="display:inline;">
+                            <input type="hidden" name="randevuId" value="@randevu.RandevuId" />
+                            <button type="submit" class="btn btn-danger">Reddet</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

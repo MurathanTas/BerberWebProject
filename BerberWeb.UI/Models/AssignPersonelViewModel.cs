@@ -8,6 +8,6 @@ namespace BerberWeb.UI.Models
         public int ServiceId { get; set; }
         public int SelectedPersonelId { get; set; }
         public List<SelectListItem> Personels { get; set; }
-        public List<AppUser> AssignedPersonels { get; set; } = new List<AppUser>();  // Burada boş liste atadık
+        public List<AppUser> AssignedPersonels { get; set; } = new List<AppUser>();  
     }
 }
