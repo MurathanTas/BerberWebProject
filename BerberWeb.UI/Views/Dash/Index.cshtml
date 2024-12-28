@@ -117,7 +117,7 @@
                     <h5>Aylık En Çok Randevusu Olan Personel</h5>
                 </div>
                 <div class="card-body">
-                    @if (ViewBag.TopEmployeeToday != null)
+                    @if (ViewBag.TopEmployeeThisMonth != null)
                     {
                         <p>Personel: @ViewBag.TopEmployeeThisMonth.FullName</p>
                         <p>Randevu Sayısı: @ViewBag.TopEmployeeThisMonth.AppointmentCount ve Kazancı: ₺@ViewBag.TopEmployeeThisMonth.Kazanc</p>

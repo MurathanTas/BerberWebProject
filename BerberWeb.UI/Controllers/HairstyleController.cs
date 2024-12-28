@@ -87,23 +87,23 @@ namespace BerberWeb.UI.Controllers
         private Dictionary<int, string> GetHairStyles()
         {
             return new Dictionary<int, string>
-            {
-                { 101, "Kakül (Varsayılan)" },
-                { 201, "Uzun Saç" },
-                { 301, "Kakül + Uzun Saç" },
-                { 401, "Orta Uzunlukta Saç" },
-                { 402, "Hafif Saç Artışı" },
-                { 403, "Yoğun Saç Artışı" },
-                { 502, "Hafif Kıvırcık" },
-                { 503, "Yoğun Kıvırcık" },
-                { 603, "Kısa Saç" },
-                { 801, "Sarı Saç" },
-                { 901, "Düz Saç" },
-                { 1001, "Yağsız Saç" },
-                { 1101, "Saç Çizgisi Dolgusu" },
-                { 1201, "Düzgün Saç" },
-                { 1301, "Saç Boşluklarını Doldurma" }
-            };
+         {
+             { 101, "Kakül (Varsayılan)" },
+             { 201, "Uzun Saç" },
+             { 301, "Kakül + Uzun Saç" },
+             { 401, "Orta Uzunlukta Saç" },
+             { 402, "Hafif Saç Artışı" },
+             { 403, "Yoğun Saç Artışı" },
+             { 502, "Hafif Kıvırcık" },
+             { 503, "Yoğun Kıvırcık" },
+             { 603, "Kısa Saç" },
+             { 801, "Sarı Saç" },
+             { 901, "Düz Saç" },
+             { 1001, "Yağsız Saç" },
+             { 1101, "Saç Çizgisi Dolgusu" },
+             { 1201, "Düzgün Saç" },
+             { 1301, "Saç Boşluklarını Doldurma" }
+         };
         }
     }
 }

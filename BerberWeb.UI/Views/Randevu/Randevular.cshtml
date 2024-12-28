@@ -37,10 +37,10 @@
                         <span class="badge bg-warning">Beklemede</span>
                     }
 
-                   
+
                 </td>
                 <td>
-                     @if (!randevu.Onay && !randevu.Ret)
+                    @if (!randevu.Onay && !randevu.Ret)
                     {
                         <form asp-action="ApproveAppointment" method="post" style="display:inline;">
                             <input type="hidden" name="randevuId" value="@randevu.RandevuId" />

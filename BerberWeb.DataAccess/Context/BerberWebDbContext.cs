@@ -38,8 +38,6 @@ namespace BerberWeb.DataAccess.Context
         public DbSet<Portfolio> Portfolios { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<ServicePersonel> ServicePersonels { get; set; }
-        public DbSet<Appointment> Appointments { get; set; }
-        public DbSet<AppointmentRegister> AppointmentRegisters { get; set; }
         public DbSet<PersonelMusaitlik> PersonelMusaitliks { get; set; }
         public DbSet<Randevu> Randevus { get; set; }
         public DbSet<Personel> Personels { get; set; }

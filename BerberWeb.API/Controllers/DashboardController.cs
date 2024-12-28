@@ -22,7 +22,7 @@ namespace BerberWeb.API.Controllers
         }
 
 
-        // Günlük en çok randevusu olan personel
+        // Günlük en çok randevusu olan personel (Admin için)
         [HttpGet("top-employee-today")]
         //  [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetTopEmployeeToday()
@@ -52,14 +52,14 @@ namespace BerberWeb.API.Controllers
             var endOfMonth = startOfMonth.AddMonths(1).AddDays(-1);
 
             var topEmployeeMonthly = await _context.Randevus
-                .Where(r => r.StartDate >= startOfMonth && r.StartDate <= endOfMonth && r.Onay == true) 
+                .Where(r => r.StartDate >= startOfMonth && r.StartDate <= endOfMonth && r.Onay == true) // Sadece onaylı randevular
                 .GroupBy(r => r.PersonelId)
                 .OrderByDescending(g => g.Count())
                 .Select(g => new
                 {
                     PersonelId = g.Key,
                     AppointmentCount = g.Count(),
-                    Kazanc = g.Sum(r => (decimal?)r.Service.Price ?? 0), 
+                    Kazanc = g.Sum(r => (decimal?)r.Service.Price ?? 0), // Randevulardan toplam gelir
                     FullName = g.FirstOrDefault().Personel.AppUser.FirstName + " " + g.FirstOrDefault().Personel.AppUser.LastName
                 })
                 .FirstOrDefaultAsync();
@@ -67,12 +67,13 @@ namespace BerberWeb.API.Controllers
             return Ok(topEmployeeMonthly);
         }
 
-        // Şu ana kadar en çok gelen müşteri
+        // Şu ana kadar en çok gelen müşteri (Admin için)
         [HttpGet("top-customer")]
         //  [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetTopCustomer()
         {
             var topCustomer = await _context.Randevus
+                .Where(x => x.Onay == true)
                 .GroupBy(ar => ar.AppUserId)
                 .OrderByDescending(g => g.Count())
                 .Select(g => new
@@ -86,11 +87,13 @@ namespace BerberWeb.API.Controllers
             return Ok(topCustomer);
         }
 
+        // En çok randevusu alınan hizmet (Admin için)
         [HttpGet("top-service")]
         //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetTopService()
         {
             var topService = await _context.Randevus
+                .Where(x => x.Onay == true)
                 .GroupBy(a => a.ServiceId)
                 .OrderByDescending(g => g.Count())
                 .Select(g => new

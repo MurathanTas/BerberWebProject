@@ -61,13 +61,13 @@ namespace BerberWeb.UI.Controllers
             {
                 ServiceId = serviceId,
                 Services = new List<SelectListItem>
-        {
-            new SelectListItem
-            {
-                Text = service.ServiceName,
-                Value = serviceId.ToString()
-            }
-        },
+     {
+         new SelectListItem
+         {
+             Text = service.ServiceName,
+             Value = serviceId.ToString()
+         }
+     },
                 Personels = personelDetaylari.Select(p => new SelectListItem
                 {
                     Text = $"{p.AppUser.FirstName} {p.AppUser.LastName}",

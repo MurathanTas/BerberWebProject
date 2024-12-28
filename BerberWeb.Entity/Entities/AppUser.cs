@@ -14,9 +14,7 @@ namespace BerberWeb.Entity.Entities
 
         public List<ServicePersonel> ServicePersonels { get; set; }
 
-        public List<Appointment> Appointments { get; set; }
         public List<Randevu> Randevus { get; set; }
-        public List<AppointmentRegister> AppointmentRegisters { get; set; }
         public List<PersonelMusaitlik> PersonelMusaitliks { get; set; }
 
 

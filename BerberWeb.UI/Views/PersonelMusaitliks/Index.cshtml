@@ -15,11 +15,14 @@
         @foreach (var appointment in Model)
         {
             <tr>
+                <!-- Personel Adı ve Soyadı -->
                 <td>@appointment.AppUser?.FirstName @appointment.AppUser?.LastName</td>
 
-                
+                <!-- Tarih (sadece tarih kısmı) -->
+                <!-- Başlangıç Saati (sadece saat kısmı) -->
                 <td>@appointment.BaslangicSaati.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss")</td>
 
+                <!-- Bitiş Saati (sadece saat kısmı) -->
                 <td>@appointment.BitisSaati.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss")</td>
             </tr>
         }
@@ -30,4 +33,3 @@
     <a asp-controller="PersonelMusaitliks" asp-action="Create" class="btn btn-success">Ekle</a>
 </div>
 <br />
-

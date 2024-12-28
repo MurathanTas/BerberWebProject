@@ -19,7 +19,6 @@ namespace BerberWeb.Entity.Entities
         public TimeSpan? Duration { get; set; }
 
         public List<ServicePersonel> ServicePersonels { get; set; }
-        public List<Appointment> Appointments { get; set; }
         public List<Randevu> Randevus { get; set; }
 
 

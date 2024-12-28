@@ -12,6 +12,7 @@
             <th scope="col">#</th>
             <th scope="col">Hizmet</th>
             <th scope="col">Fiyat</th>
+            <th scope="col">Süre</th>
             <th scope="col" class="sort" data-sort="completion">Personel</th>
             <th scope="col">Sil</th>
             <th scope="col" class="sort" data-sort="completion">Düzenle</th>
@@ -24,6 +25,7 @@
                 <th scope="row">@service.Id</th>
                 <td>@service.ServiceName</td>
                 <td>@service.Price TL</td>
+                <td>@service.Duration </td>
                 <td>
                     <a asp-controller="ServicePersonel" asp-action="Index" asp-route-serviceId="@service.Id" class="btn btn-warning">
                         Personel Ata

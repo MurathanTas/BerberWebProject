@@ -57,7 +57,6 @@ namespace BerberWeb.UI.Controllers
             {
                 ViewBag.TopEmployeeTodayError = "En çok randevusu olan personel verisi alınamadı.";
             }
-            // Aylık en çok işi olan personel.
             var topEmployeeThisMonthResponse = await _httpClient.GetAsync("dashboard/top-employee-this-monthly");
             if (topEmployeeThisMonthResponse.IsSuccessStatusCode)
             {

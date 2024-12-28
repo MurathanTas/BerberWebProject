@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BerberWeb.Entity.Entities.AppUser>
+﻿@model IEnumerable<BerberWeb.Entity.Entities.Personel>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -18,12 +18,15 @@
         @foreach (var user in Model)
         {
             <tr>
-                <td>@user.UserName</td>
-                <td>@user.FirstName</td>
-                <td>@user.LastName</td>
-                <td>@user.Email</td>
+                <td>@user.AppUser.UserName</td>
+                <td>@user.AppUser.FirstName</td>
+                <td>@user.AppUser.LastName</td>
+                <td>@user.AppUser.Email</td>
                 <td>
-                    <a href="@Url.Action("Delete", "Admin", new { id = user.Id })" class="btn btn-danger">Sil</a>
+                    <form asp-action="DeletePersonel" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@user.PersonelId" />
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Bu personeli silmek istediğinize emin misiniz?');">Sil</button>
+                    </form>
                 </td>
             </tr>
         }
