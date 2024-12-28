@@ -9,7 +9,7 @@ namespace BerberWeb.UI.Controllers
     public class HairstyleController : Controller
     {
         private const string ApiUrl = "https://hairstyle-changer.p.rapidapi.com/huoshan/facebody/hairstyle";
-        private const string ApiKey = "7512f43d22msh26c077d39ca1d12p1b30e6jsnd9d7737b4f9f";
+        private const string ApiKey = "b42db2d0b7mshefce1b2f44b449ep1ca760jsn89080e67f87e";
         private const string ApiHost = "hairstyle-changer.p.rapidapi.com";
 
         public IActionResult Index()
