@@ -31,15 +31,15 @@ namespace BerberWeb.API
             //    options.Password.RequiredLength = 6;
             //    options.Password.RequiredUniqueChars = 1;
             //}).AddEntityFrameworkStores<BerberWebDbContext>();
-            builder.Services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
-            builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericManager<>));
-            builder.Services.AddScoped<IAboutService, AboutManager>();
-            builder.Services.AddScoped<IAboutDal, EfAboutDal>();
-            builder.Services.AddScoped<IContactService, ContactManager>();
-            builder.Services.AddScoped<IContactDal, EfContactDal>();
-            builder.Services.AddScoped<IServiceService, ServiceManager>();
-            builder.Services.AddScoped<IServiceDal, EfServiceDal>();
-            builder.Services.AddScoped<IUserService, UserService>();
+            //builder.Services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
+            //builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericManager<>));
+            //builder.Services.AddScoped<IAboutService, AboutManager>();
+            //builder.Services.AddScoped<IAboutDal, EfAboutDal>();
+            //builder.Services.AddScoped<IContactService, ContactManager>();
+            //builder.Services.AddScoped<IContactDal, EfContactDal>();
+            //builder.Services.AddScoped<IServiceService, ServiceManager>();
+            //builder.Services.AddScoped<IServiceDal, EfServiceDal>();
+            //builder.Services.AddScoped<IUserService, UserService>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

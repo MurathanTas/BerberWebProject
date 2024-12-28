@@ -8,94 +8,94 @@ namespace BerberWeb.UI.Controllers
     [Authorize(Roles = "Admin")]
     public class DashController : Controller
     {
-        private readonly HttpClient _httpClient;
+        //private readonly HttpClient _httpClient;
 
-        public DashController(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("https://localhost:7283/api/"); // API Base URL
+        //public DashController(HttpClient httpClient)
+        //{
+        //    _httpClient = httpClient;
+        //    // API Base URL
 
-        }
+        //}
 
-        public async Task<IActionResult> Index()
-        {
-            // Günlük kazanç
-            var dailyRevenueResponse = await _httpClient.GetAsync("dashboard/daily-revenue");
-            if (dailyRevenueResponse.IsSuccessStatusCode)
-            {
-                var json = await dailyRevenueResponse.Content.ReadAsStringAsync();
-                var dailyRevenue = JsonConvert.DeserializeObject<DailyRevenueViewModel>(json);
-                ViewBag.DailyRevenue = dailyRevenue;
-            }
-            else
-            {
-                ViewBag.DailyRevenueError = "Günlük kazanç verisi alınamadı.";
-            }
+        //public async Task<IActionResult> Index()
+        //{
+        //    // Günlük kazanç
+        //    var dailyRevenueResponse = await _httpClient.GetAsync("dashboard/daily-revenue");
+        //    if (dailyRevenueResponse.IsSuccessStatusCode)
+        //    {
+        //        var json = await dailyRevenueResponse.Content.ReadAsStringAsync();
+        //        var dailyRevenue = JsonConvert.DeserializeObject<DailyRevenueViewModel>(json);
+        //        ViewBag.DailyRevenue = dailyRevenue;
+        //    }
+        //    else
+        //    {
+        //        ViewBag.DailyRevenueError = "Günlük kazanç verisi alınamadı.";
+        //    }
 
-            // Aylık kazanç
-            var monthlyRevenueResponse = await _httpClient.GetAsync("dashboard/monthly-revenue");
-            if (monthlyRevenueResponse.IsSuccessStatusCode)
-            {
-                var json = await monthlyRevenueResponse.Content.ReadAsStringAsync();
-                var monthlyRevenue = JsonConvert.DeserializeObject<MonthlyRevenueViewModel>(json);
-                ViewBag.MonthlyRevenue = monthlyRevenue;
-            }
-            else
-            {
-                ViewBag.MonthlyRevenueError = "Aylık kazanç verisi alınamadı.";
-            }
+        //    // Aylık kazanç
+        //    var monthlyRevenueResponse = await _httpClient.GetAsync("dashboard/monthly-revenue");
+        //    if (monthlyRevenueResponse.IsSuccessStatusCode)
+        //    {
+        //        var json = await monthlyRevenueResponse.Content.ReadAsStringAsync();
+        //        var monthlyRevenue = JsonConvert.DeserializeObject<MonthlyRevenueViewModel>(json);
+        //        ViewBag.MonthlyRevenue = monthlyRevenue;
+        //    }
+        //    else
+        //    {
+        //        ViewBag.MonthlyRevenueError = "Aylık kazanç verisi alınamadı.";
+        //    }
 
-            // Günlük en çok randevusu olan personel
-            var topEmployeeResponse = await _httpClient.GetAsync("dashboard/top-employee-today");
-            if (topEmployeeResponse.IsSuccessStatusCode)
-            {
-                var json = await topEmployeeResponse.Content.ReadAsStringAsync();
-                var topEmployee = JsonConvert.DeserializeObject<TopEmployeeTodayViewModel>(json);
-                ViewBag.TopEmployeeToday = topEmployee;
-            }
-            else
-            {
-                ViewBag.TopEmployeeTodayError = "En çok randevusu olan personel verisi alınamadı.";
-            }
-            var topEmployeeThisMonthResponse = await _httpClient.GetAsync("dashboard/top-employee-this-monthly");
-            if (topEmployeeThisMonthResponse.IsSuccessStatusCode)
-            {
-                var json = await topEmployeeThisMonthResponse.Content.ReadAsStringAsync();
-                var topEmployeeThisMonth = JsonConvert.DeserializeObject<TopEmployeeMonthlyViewModel>(json);
-                ViewBag.TopEmployeeThisMonth = topEmployeeThisMonth;
-            }
-            else
-            {
-                ViewBag.TopEmployeeThisMonthError = "Aylık en çok randevusu olan personel verisi alınamadı.";
-            }
-            // En çok gelen müşteri
-            var topCustomerResponse = await _httpClient.GetAsync("dashboard/top-customer");
-            if (topCustomerResponse.IsSuccessStatusCode)
-            {
-                var json = await topCustomerResponse.Content.ReadAsStringAsync();
-                var topCustomer = JsonConvert.DeserializeObject<TopCustomerViewModel>(json);
-                ViewBag.TopCustomer = topCustomer;
-            }
-            else
-            {
-                ViewBag.TopCustomerError = "En çok gelen müşteri verisi alınamadı.";
-            }
+        //    // Günlük en çok randevusu olan personel
+        //    var topEmployeeResponse = await _httpClient.GetAsync("dashboard/top-employee-today");
+        //    if (topEmployeeResponse.IsSuccessStatusCode)
+        //    {
+        //        var json = await topEmployeeResponse.Content.ReadAsStringAsync();
+        //        var topEmployee = JsonConvert.DeserializeObject<TopEmployeeTodayViewModel>(json);
+        //        ViewBag.TopEmployeeToday = topEmployee;
+        //    }
+        //    else
+        //    {
+        //        ViewBag.TopEmployeeTodayError = "En çok randevusu olan personel verisi alınamadı.";
+        //    }
+        //    var topEmployeeThisMonthResponse = await _httpClient.GetAsync("dashboard/top-employee-this-monthly");
+        //    if (topEmployeeThisMonthResponse.IsSuccessStatusCode)
+        //    {
+        //        var json = await topEmployeeThisMonthResponse.Content.ReadAsStringAsync();
+        //        var topEmployeeThisMonth = JsonConvert.DeserializeObject<TopEmployeeMonthlyViewModel>(json);
+        //        ViewBag.TopEmployeeThisMonth = topEmployeeThisMonth;
+        //    }
+        //    else
+        //    {
+        //        ViewBag.TopEmployeeThisMonthError = "Aylık en çok randevusu olan personel verisi alınamadı.";
+        //    }
+        //    // En çok gelen müşteri
+        //    var topCustomerResponse = await _httpClient.GetAsync("dashboard/top-customer");
+        //    if (topCustomerResponse.IsSuccessStatusCode)
+        //    {
+        //        var json = await topCustomerResponse.Content.ReadAsStringAsync();
+        //        var topCustomer = JsonConvert.DeserializeObject<TopCustomerViewModel>(json);
+        //        ViewBag.TopCustomer = topCustomer;
+        //    }
+        //    else
+        //    {
+        //        ViewBag.TopCustomerError = "En çok gelen müşteri verisi alınamadı.";
+        //    }
 
-            // En çok randevusu alınan hizmet
-            var topServiceResponse = await _httpClient.GetAsync("dashboard/top-service");
-            if (topServiceResponse.IsSuccessStatusCode)
-            {
-                var json = await topServiceResponse.Content.ReadAsStringAsync();
-                var topService = JsonConvert.DeserializeObject<TopServiceViewModel>(json);
-                ViewBag.TopService = topService;
-            }
-            else
-            {
-                ViewBag.TopServiceError = "En çok randevusu alınan hizmet verisi alınamadı.";
-            }
+        //    // En çok randevusu alınan hizmet
+        //    var topServiceResponse = await _httpClient.GetAsync("dashboard/top-service");
+        //    if (topServiceResponse.IsSuccessStatusCode)
+        //    {
+        //        var json = await topServiceResponse.Content.ReadAsStringAsync();
+        //        var topService = JsonConvert.DeserializeObject<TopServiceViewModel>(json);
+        //        ViewBag.TopService = topService;
+        //    }
+        //    else
+        //    {
+        //        ViewBag.TopServiceError = "En çok randevusu alınan hizmet verisi alınamadı.";
+        //    }
 
-            return View();
-        }
+        //    return View();
+        //}
     }
 
     public class DailyRevenueViewModel

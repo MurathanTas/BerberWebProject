@@ -16,6 +16,21 @@ namespace BerberWeb.UI.Controllers
         public IActionResult Index()
         {
             var about = _aboutService.TGetByID(1);
+            if (about == null)
+            {
+                // Yeni bir About nesnesi oluştur ve varsayılan değerlerle kaydet
+                about = new About
+                {
+                     AboutID = 1,
+                    Title = "Varsayılan Başlık",
+                    Description = "Varsayılan Açıklama",
+                    ImageUrl = "boş"
+                };
+
+                // Yeni nesneyi kaydet
+                _aboutService.TAdd(about);
+            }
+
             return View(about);
         }
 

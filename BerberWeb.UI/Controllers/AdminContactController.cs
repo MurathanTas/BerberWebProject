@@ -15,8 +15,25 @@ namespace BerberWeb.UI.Controllers
 
         public IActionResult Index()
         {
-            var about = _contactService.TGetByID(1);
-            return View(about);
+            var contact = _contactService.TGetByID(1);
+            if (contact == null)
+            {
+                // Yeni bir About nesnesi oluştur ve varsayılan değerlerle kaydet
+                contact = new Contact
+                {
+                    Id = 1,
+                    Description = "Varsayılan Başlık",
+                    ImageUrl = "Varsayılan Açıklama",
+                    Email = "boş",
+                    PhoneNumber = "boş"
+                };
+
+                // Yeni nesneyi kaydet
+                _contactService.TAdd(contact);
+            }
+
+            return View(contact);
+
         }
 
         [HttpPost]

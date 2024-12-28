@@ -31,10 +31,17 @@ namespace BerberWeb.UI.Controllers
                 return NotFound($"Rol '{roleName}' bulunamadı.");
             }
 
-            // Personel rolüne sahip tüm kullanıcıları alın
+            // Personel tablosunu kullanarak ilgili rolü taşıyan kullanıcıları al
             var usersInRole = await _userManager.GetUsersInRoleAsync(roleName);
+            var userIdsInRole = usersInRole.Select(u => u.Id).ToList();
 
-            return View(usersInRole); // Listeyi View'a gönder
+            var sortedPersonel = await _context.Personels
+                .Where(p => userIdsInRole.Contains(p.AppUserId))
+                .Include(p => p.AppUser)
+                .OrderBy(p => p.AppUser.UserName)
+                .ToListAsync();
+
+            return View(sortedPersonel);
         }
 
 
@@ -50,7 +57,6 @@ namespace BerberWeb.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Yeni personel oluşturma işlemi burada yapılacak
                 var user = new AppUser
                 {
                     UserName = model.UserName,
@@ -63,15 +69,22 @@ namespace BerberWeb.UI.Controllers
 
                 if (result.Succeeded)
                 {
-                    // Personeli rol ekle
                     var roleResult = await _userManager.AddToRoleAsync(user, "Personel");
 
                     if (roleResult.Succeeded)
                     {
-                        return RedirectToAction("Index"); // Başarılı işlem sonrası yönlendirme
+                        var personel = new Personel
+                        {
+                            AppUserId = user.Id
+                        };
+
+
+                        _context.Personels.Add(personel);
+                        await _context.SaveChangesAsync();
+
+                        return RedirectToAction("Index");
                     }
 
-                    // Rol ekleme başarısızsa, hataları ModelState'e ekleyin
                     foreach (var error in roleResult.Errors)
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
@@ -79,15 +92,15 @@ namespace BerberWeb.UI.Controllers
                 }
                 else
                 {
-                    // Kullanıcı oluşturma başarısızsa, hataları ModelState'e ekleyin
                     foreach (var error in result.Errors)
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
                 }
             }
-            return View(model); // ModelState invalid ise, tekrar formu döndür
+            return View(model);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeletePersonel(int id)

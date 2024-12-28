@@ -11,6 +11,9 @@ namespace BerberWeb.DataAccess.Context
 {
     public class BerberWebDbContext : IdentityDbContext<AppUser, AppRole, int>
     {
+        public BerberWebDbContext(DbContextOptions options) : base(options)
+        {
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
